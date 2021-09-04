@@ -13,7 +13,7 @@ public class Authority implements GrantedAuthority {
     @GeneratedValue
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String name;
     @Override
     public String getAuthority() {
