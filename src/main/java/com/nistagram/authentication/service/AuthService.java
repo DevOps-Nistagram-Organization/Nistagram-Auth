@@ -40,6 +40,20 @@ public class AuthService {
         this.userClient = userClient;
     }
 
+
+    public String login(LoginRequestDTO dto) {
+        try {
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+                    dto.getUsername(), dto.getPassword()));
+        } catch (BadCredentialsException | InternalAuthenticationServiceException e) {
+            throw new BadCredentialsException(dto.getUsername());
+        }
+        final User user = userRepository.findByUsername(dto.getUsername());
+
+        return jwtTokenUtil.generateToken(user);
+
+    }
+
     public User register(RegistrationRequestDTO dto) throws Exception {
         Authority authority = null;
         List<Authority> authorityList = new ArrayList<>();
