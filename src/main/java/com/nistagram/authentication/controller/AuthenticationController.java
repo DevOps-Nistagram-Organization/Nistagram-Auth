@@ -19,6 +19,12 @@ public class AuthenticationController {
         this.authService = authService;
     }
 
+    @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<LoginResponseDTO> login(@RequestBody LoginRequestDTO dto) {
+        String token = authService.login(dto);
+        return new ResponseEntity<>(new LoginResponseDTO(token), HttpStatus.OK);
+    }
+
     @PostMapping(value = "/register", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<RegistrationResponseDTO> register(@RequestBody RegistrationRequestDTO dto) throws Exception {
         User user = authService.register(dto);
