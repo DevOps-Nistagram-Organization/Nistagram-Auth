@@ -18,9 +18,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class AuthService {
@@ -56,7 +54,7 @@ public class AuthService {
 
     public User register(RegistrationRequestDTO dto) throws Exception {
         Authority authority = null;
-        List<Authority> authorityList = new ArrayList<>();
+        Set<Authority> authorityList = new HashSet<>();
         if (dto.getAgent()) {
             authorityList.add(authorityRepository.findByName("AGENT"));
         } else {

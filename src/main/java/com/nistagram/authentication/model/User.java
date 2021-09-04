@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class User implements UserDetails {
@@ -18,9 +19,9 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String password;
     @ManyToMany
-    private List<Authority> authorityList;
+    private Set<Authority> authorityList;
 
-    public User(Long id, String username, String password, List<Authority> authorityList) {
+    public User(Long id, String username, String password, Set<Authority> authorityList) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -79,11 +80,11 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    public List<Authority> getAuthorityList() {
+    public Set<Authority> getAuthorityList() {
         return authorityList;
     }
 
-    public void setAuthorityList(List<Authority> authorityList) {
+    public void setAuthorityList(Set<Authority> authorityList) {
         this.authorityList = authorityList;
     }
 }
