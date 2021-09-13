@@ -30,8 +30,6 @@ jobs:
   artifact:
     name: Publish - GitHub Packages
     runs-on: ubuntu-latest
-    strategy:
-      matrix: { dir: [ 'AgentProductService', 'AgentReportService','AgentShopService' ] }
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11
@@ -39,7 +37,6 @@ jobs:
         with:
           java-version: 11
       - name: Publish artifact on GitHub Packages
-        working-directory: ${{ matrix.dir }}
         run: mvn -B clean deploy -DskipTests
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -50,5 +47,5 @@ jobs:
     needs: [release]
     steps:
       - uses: actions/checkout@v1
-      - name: Build product service docker image
+      - name: Build Nistagram Auth service docker image
         run: bash ./publish-dockerhub.sh ${{ needs.release.outputs.tag_name }} ${{ secrets.DOCKER_USER }} ${{ secrets.DOCKER_PASS }}
