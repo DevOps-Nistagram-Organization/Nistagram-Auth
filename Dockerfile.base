@@ -6,7 +6,7 @@ ARG STAGE=dev
 LABEL maintainer="stevicdule@gmail.com"
 
 # Create app directory. This directory must have the same name as the directory in
-# Dockerfile file /usr/src/product_service. Our application will be copied in the
+# Dockerfile file /usr/src/auth_service. Our application will be copied in the
 # same directory where mvn dependencies are installed
 WORKDIR /usr/src/auth_service
 COPY pom.xml .
