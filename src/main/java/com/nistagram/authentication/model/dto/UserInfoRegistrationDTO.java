@@ -8,10 +8,13 @@ public class UserInfoRegistrationDTO {
     private String lastName;
     private String email;
     private String gender;
+    private String website;
     private Date dateOfBirth;
     private Boolean agent;
 
-    public UserInfoRegistrationDTO(String username, String firstName, String lastName, String email, String gender, Date dateOfBirth, Boolean agent) {
+    public UserInfoRegistrationDTO(String username, String firstName,
+                                   String lastName, String email, String gender,
+                                   Date dateOfBirth, Boolean agent, String website) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -19,6 +22,7 @@ public class UserInfoRegistrationDTO {
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
         this.agent = agent;
+        this.website = website;
     }
 
     public UserInfoRegistrationDTO() {
@@ -78,5 +82,13 @@ public class UserInfoRegistrationDTO {
 
     public void setAgent(Boolean agent) {
         this.agent = agent;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
     }
 }

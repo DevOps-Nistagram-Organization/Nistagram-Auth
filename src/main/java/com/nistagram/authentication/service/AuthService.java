@@ -64,7 +64,7 @@ public class AuthService {
         user = userRepository.save(user);
         String token = jwtTokenUtil.generateToken(user);
         UserInfoRegistrationDTO userInfoRegistrationDTO = new UserInfoRegistrationDTO(dto.getUsername(),
-                dto.getFirstName(), dto.getLastName(), dto.getEmail(), dto.getGender(), dto.getDateOfBirth(), dto.getAgent());
+                dto.getFirstName(), dto.getLastName(), dto.getEmail(), dto.getGender(), dto.getDateOfBirth(), dto.getAgent(), dto.getWebsite());
         ResponseEntity<UserInfoDTO> response = userClient.saveUser(userInfoRegistrationDTO, "Bearer " + token);
         if (response.getStatusCode() == HttpStatus.OK) {
             return userRepository.save(user);
