@@ -10,7 +10,8 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-public class User implements UserDetails {
+@Table(name="my_user")
+public class MyUser implements UserDetails {
     @Id
     @GeneratedValue
     private Long id;
@@ -21,14 +22,14 @@ public class User implements UserDetails {
     @ManyToMany
     private Set<Authority> authorityList;
 
-    public User(Long id, String username, String password, Set<Authority> authorityList) {
+    public MyUser(Long id, String username, String password, Set<Authority> authorityList) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.authorityList = authorityList;
     }
 
-    public User() {
+    public MyUser() {
     }
 
     public Long getId() {
