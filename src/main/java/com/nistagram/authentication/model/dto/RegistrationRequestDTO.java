@@ -9,6 +9,7 @@ public class RegistrationRequestDTO {
     private String password;
     private String email;
     private String gender;
+    private String website;
     private Date dateOfBirth;
     private Boolean agent;
 
@@ -77,5 +78,13 @@ public class RegistrationRequestDTO {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
     }
 }

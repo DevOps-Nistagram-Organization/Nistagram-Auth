@@ -1,6 +1,6 @@
 package com.nistagram.authentication.controller;
 
-import com.nistagram.authentication.model.User;
+import com.nistagram.authentication.model.MyUser;
 import com.nistagram.authentication.model.dto.*;
 import com.nistagram.authentication.service.AuthService;
 import org.springframework.http.HttpStatus;
@@ -27,7 +27,7 @@ public class AuthenticationController {
 
     @PostMapping(value = "/register", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<RegistrationResponseDTO> register(@RequestBody RegistrationRequestDTO dto) throws Exception {
-        User user = authService.register(dto);
+        MyUser user = authService.register(dto);
         return new ResponseEntity<>(new RegistrationResponseDTO("Success"), HttpStatus.OK);
     }
 }
