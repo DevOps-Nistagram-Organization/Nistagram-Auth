@@ -14,6 +14,6 @@ import org.springframework.web.bind.annotation.RequestHeader;
 @FeignClient(name = "user", url = "${app.user.url}")
 public interface UserClient {
 
-    @PostMapping(value = "saveUser", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "user/saveUser", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<UserInfoDTO> saveUser(@RequestBody() UserInfoRegistrationDTO dto, @RequestHeader("Authorization") String bearerToken);
 }

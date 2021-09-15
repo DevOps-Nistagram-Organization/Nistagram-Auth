@@ -1,6 +1,6 @@
 package com.nistagram.authentication.config;
 
-import com.nistagram.authentication.model.User;
+import com.nistagram.authentication.model.MyUser;
 import com.nistagram.authentication.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -22,7 +22,7 @@ public class JwtUserDetailsService implements UserDetailsService {
     // if user with that username doesn't  exists the method will throw exception
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User agent = userRepository.findByUsername(username);
+        MyUser agent = userRepository.findByUsername(username);
         if (agent == null) {
             throw new UsernameNotFoundException(String.format("No user found with username '%s'.", username));
         } else {

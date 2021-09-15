@@ -3,7 +3,7 @@ package com.nistagram.authentication.service;
 import com.nistagram.authentication.client.UserClient;
 import com.nistagram.authentication.config.JwtTokenUtil;
 import com.nistagram.authentication.model.Authority;
-import com.nistagram.authentication.model.User;
+import com.nistagram.authentication.model.MyUser;
 import com.nistagram.authentication.model.dto.LoginRequestDTO;
 import com.nistagram.authentication.model.dto.RegistrationRequestDTO;
 import com.nistagram.authentication.model.dto.UserInfoDTO;
@@ -46,13 +46,13 @@ public class AuthService {
         } catch (BadCredentialsException | InternalAuthenticationServiceException e) {
             throw new BadCredentialsException(dto.getUsername());
         }
-        final User user = userRepository.findByUsername(dto.getUsername());
+        final MyUser user = userRepository.findByUsername(dto.getUsername());
 
         return jwtTokenUtil.generateToken(user);
 
     }
 
-    public User register(RegistrationRequestDTO dto) throws Exception {
+    public MyUser register(RegistrationRequestDTO dto) throws Exception {
         Authority authority = null;
         Set<Authority> authorityList = new HashSet<>();
         if (dto.getAgent()) {
@@ -60,7 +60,7 @@ public class AuthService {
         } else {
             authorityList.add(authorityRepository.findByName("USER"));
         }
-        User user = new User(null, dto.getUsername(), (new BCryptPasswordEncoder().encode(dto.getPassword())), authorityList);
+        MyUser user = new MyUser(null, dto.getUsername(), (new BCryptPasswordEncoder().encode(dto.getPassword())), authorityList);
         user = userRepository.save(user);
         String token = jwtTokenUtil.generateToken(user);
         UserInfoRegistrationDTO userInfoRegistrationDTO = new UserInfoRegistrationDTO(dto.getUsername(),
@@ -76,7 +76,7 @@ public class AuthService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
             String username = authentication.getName();
-            User user = userRepository.findByUsername(username);
+            MyUser user = userRepository.findByUsername(username);
             return jwtTokenUtil.generateToken(user);
         }
         return null;
